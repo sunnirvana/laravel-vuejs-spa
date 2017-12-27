@@ -14,6 +14,6 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::any('/{all}', function () {
+    return view('master');
+})->where(['all' => '.*']);

@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 import VueRouter from 'vue-router';
 import router from './routes';
+import axios from 'axios';
 
 Vue.use(VueRouter);
 

@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router';
 
-const Home = require('./components/Home');
-const About = require('./components/About');
-const Post = require('./components/Post');
+const Home = require('./components/pages/Home');
+const About = require('./components/pages/About');
+const Post = require('./components/posts/Post');
 
 const routes = [
     {path: '/', component: Home},

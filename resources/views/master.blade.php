@@ -14,13 +14,7 @@
     <body>
 
     <div id="app">
-        <div class="navbar">
-            <router-link class="navbar-brand" to="/home">Home</router-link>
-            <ul class="nav navbar-nav">
-                <router-link tag="li" to="/about"> <a>About</a> </router-link>
-            </ul>
-        </div>
-        <router-view></router-view>
+        <app></app>
     </div>
 
     <script src="/js/app.js"></script>

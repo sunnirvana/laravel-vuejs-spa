@@ -6,7 +6,7 @@
 
             <div class="col-md-6">
                 <input v-model="name"
-                       v-validate="{ required: true, min: 3 }"
+                       v-validate data-vv-rules="required|min:3" data-vv-as="NAME"
                        id="name" type="text" class="form-control" name="name" required autofocus>
                 <span class="help-block" v-show="errors.has('name')">{{ errors.first('name') }}</span>
             </div>
@@ -17,7 +17,7 @@
 
             <div class="col-md-6">
                 <input v-model="email"
-                       v-validate="{ required: true, email: true}"
+                       v-validate data-vv-rules="required|email" data-vv-as="EMAIL"
                        id="email" type="email" class="form-control" name="email" required>
                 <span class="help-block" v-show="errors.has('email')">{{ errors.first('email') }}</span>
             </div>
@@ -28,7 +28,7 @@
 
             <div class="col-md-6">
                 <input v-model="password"
-                       v-validate="{required: true, min: 6}"
+                       v-validate data-vv-rules="required|min:6" data-vv-as="PASSWORD"
                        id="password" type="password" class="form-control" name="password" required>
                 <span class="help-block" v-show="errors.has('password')">{{ errors.first('password')}}</span>
             </div>
@@ -38,7 +38,7 @@
             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
             <div class="col-md-6">
-                <input v-validate="{required: true, confirmed: password}"
+                <input v-validate data-vv-rules="required|confirmed:password" data-vv-as="CONFIRMATION"
                         id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 <span class="help-block" v-show="errors.has('password_confirmation')">{{ errors.first('password_confirmation')}}</span>
             </div>

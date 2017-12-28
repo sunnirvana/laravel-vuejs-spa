@@ -4018,7 +4018,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vee_validate__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__locale_en_js__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate__ = __webpack_require__(88);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -4039,9 +4040,13 @@ window.Vue = __webpack_require__(39);
 
 
 
+// Localize takes the locale object as the second argument (optional) and merges it.
+
+
+__WEBPACK_IMPORTED_MODULE_4_vee_validate__["a" /* Validator */].localize('ar', __WEBPACK_IMPORTED_MODULE_3__locale_en_js__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_4_vee_validate__["b" /* default */]);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
-Vue.use(__WEBPACK_IMPORTED_MODULE_3_vee_validate__["a" /* default */]);
 Vue.component('app', __WEBPACK_IMPORTED_MODULE_2__components_App___default.a);
 
 var app = new Vue({
@@ -46700,15 +46705,12 @@ var render = function() {
                   value: _vm.name,
                   expression: "name"
                 },
-                {
-                  name: "validate",
-                  rawName: "v-validate",
-                  value: { required: true, min: 3 },
-                  expression: "{ required: true, min: 3 }"
-                }
+                { name: "validate", rawName: "v-validate" }
               ],
               staticClass: "form-control",
               attrs: {
+                "data-vv-rules": "required|min:3",
+                "data-vv-as": "NAME",
                 id: "name",
                 type: "text",
                 name: "name",
@@ -46767,15 +46769,12 @@ var render = function() {
                   value: _vm.email,
                   expression: "email"
                 },
-                {
-                  name: "validate",
-                  rawName: "v-validate",
-                  value: { required: true, email: true },
-                  expression: "{ required: true, email: true}"
-                }
+                { name: "validate", rawName: "v-validate" }
               ],
               staticClass: "form-control",
               attrs: {
+                "data-vv-rules": "required|email",
+                "data-vv-as": "EMAIL",
                 id: "email",
                 type: "email",
                 name: "email",
@@ -46836,15 +46835,12 @@ var render = function() {
                   value: _vm.password,
                   expression: "password"
                 },
-                {
-                  name: "validate",
-                  rawName: "v-validate",
-                  value: { required: true, min: 6 },
-                  expression: "{required: true, min: 6}"
-                }
+                { name: "validate", rawName: "v-validate" }
               ],
               staticClass: "form-control",
               attrs: {
+                "data-vv-rules": "required|min:6",
+                "data-vv-as": "PASSWORD",
                 id: "password",
                 type: "password",
                 name: "password",
@@ -46898,16 +46894,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("input", {
-              directives: [
-                {
-                  name: "validate",
-                  rawName: "v-validate",
-                  value: { required: true, confirmed: _vm.password },
-                  expression: "{required: true, confirmed: password}"
-                }
-              ],
+              directives: [{ name: "validate", rawName: "v-validate" }],
               staticClass: "form-control",
               attrs: {
+                "data-vv-rules": "required|confirmed:password",
+                "data-vv-as": "CONFIRMATION",
                 id: "password-confirm",
                 type: "password",
                 name: "password_confirmation",
@@ -47441,7 +47432,7 @@ if (false) {
 /* unused harmony export directive */
 /* unused harmony export mixin */
 /* unused harmony export mapFields */
-/* unused harmony export Validator */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Validator; });
 /* unused harmony export ErrorBag */
 /* unused harmony export Rules */
 /* unused harmony export version */
@@ -54418,8 +54409,216 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+/* harmony default export */ __webpack_exports__["b"] = (index_esm);
 
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(90);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var messages = {
+    _default: function _default(field) {
+        return 'The ' + field + ' value is not valid.';
+    },
+    after: function after(field, _ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            target = _ref2[0],
+            inclusion = _ref2[1];
+
+        return 'The ' + field + ' must be after ' + (inclusion ? 'or equal to ' : '') + target + '.';
+    },
+    alpha_dash: function alpha_dash(field) {
+        return 'The ' + field + ' field may contain alpha-numeric characters as well as dashes and underscores.';
+    },
+    alpha_num: function alpha_num(field) {
+        return 'The ' + field + ' field may only contain alpha-numeric characters.';
+    },
+    alpha_spaces: function alpha_spaces(field) {
+        return 'The ' + field + ' field may only contain alphabetic characters as well as spaces.';
+    },
+    alpha: function alpha(field) {
+        return 'The ' + field + ' field may only contain alphabetic characters.';
+    },
+    before: function before(field, _ref3) {
+        var _ref4 = _slicedToArray(_ref3, 2),
+            target = _ref4[0],
+            inclusion = _ref4[1];
+
+        return 'The ' + field + ' must be before ' + (inclusion ? 'or equal to ' : '') + target + '.';
+    },
+    between: function between(field, _ref5) {
+        var _ref6 = _slicedToArray(_ref5, 2),
+            min = _ref6[0],
+            max = _ref6[1];
+
+        return 'The ' + field + ' field must be between ' + min + ' and ' + max + '.';
+    },
+    confirmed: function confirmed(field) {
+        return 'The ' + field + ' confirmation does not match.';
+    },
+    credit_card: function credit_card(field) {
+        return 'The ' + field + ' field is invalid.';
+    },
+    date_between: function date_between(field, _ref7) {
+        var _ref8 = _slicedToArray(_ref7, 2),
+            min = _ref8[0],
+            max = _ref8[1];
+
+        return 'The ' + field + ' must be between ' + min + ' and ' + max + '.';
+    },
+    date_format: function date_format(field, _ref9) {
+        var _ref10 = _slicedToArray(_ref9, 1),
+            format = _ref10[0];
+
+        return 'The ' + field + ' must be in the format ' + format + '.';
+    },
+    decimal: function decimal(field) {
+        var _ref11 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [],
+            _ref12 = _slicedToArray(_ref11, 1),
+            _ref12$ = _ref12[0],
+            decimals = _ref12$ === undefined ? '*' : _ref12$;
+
+        return 'The ' + field + ' field must be numeric and may contain ' + (!decimals || decimals === '*' ? '' : decimals) + ' decimal points.';
+    },
+    digits: function digits(field, _ref13) {
+        var _ref14 = _slicedToArray(_ref13, 1),
+            length = _ref14[0];
+
+        return 'The ' + field + ' field must be numeric and exactly contain ' + length + ' digits.';
+    },
+    dimensions: function dimensions(field, _ref15) {
+        var _ref16 = _slicedToArray(_ref15, 2),
+            width = _ref16[0],
+            height = _ref16[1];
+
+        return 'The ' + field + ' field must be ' + width + ' pixels by ' + height + ' pixels.';
+    },
+    email: function email(field) {
+        return 'The ' + field + ' field must be a valid email.';
+    },
+    ext: function ext(field) {
+        return 'The ' + field + ' field must be a valid file.';
+    },
+    image: function image(field) {
+        return 'The ' + field + ' field must be an image.';
+    },
+    in: function _in(field) {
+        return 'The ' + field + ' field must be a valid value.';
+    },
+    integer: function integer(field) {
+        return 'The ' + field + ' field must be an integer.';
+    },
+    ip: function ip(field) {
+        return 'The ' + field + ' field must be a valid ip address.';
+    },
+    length: function length(field, _ref17) {
+        var _ref18 = _slicedToArray(_ref17, 2),
+            _length = _ref18[0],
+            max = _ref18[1];
+
+        if (max) {
+            return 'The ' + field + ' length be between ' + _length + ' and ' + max + '.';
+        }
+
+        return 'The ' + field + ' length must be ' + _length + '.';
+    },
+    max: function max(field, _ref19) {
+        var _ref20 = _slicedToArray(_ref19, 1),
+            length = _ref20[0];
+
+        return 'The ' + field + ' field may not be greater than ' + length + ' characters.';
+    },
+    max_value: function max_value(field, _ref21) {
+        var _ref22 = _slicedToArray(_ref21, 1),
+            max = _ref22[0];
+
+        return 'The ' + field + ' field must be ' + max + ' or less.';
+    },
+    mimes: function mimes(field) {
+        return 'The ' + field + ' field must have a valid file type.';
+    },
+    min: function min(field, _ref23) {
+        var _ref24 = _slicedToArray(_ref23, 1),
+            length = _ref24[0];
+
+        return 'The ' + field + ' field must be at least ' + length + ' characters.';
+    },
+    min_value: function min_value(field, _ref25) {
+        var _ref26 = _slicedToArray(_ref25, 1),
+            min = _ref26[0];
+
+        return 'The ' + field + ' field must be ' + min + ' or more.';
+    },
+    not_in: function not_in(field) {
+        return 'The ' + field + ' field must be a valid value.';
+    },
+    numeric: function numeric(field) {
+        return 'The ' + field + ' field may only contain numeric characters.';
+    },
+    regex: function regex(field) {
+        return 'The ' + field + ' field format is invalid.';
+    },
+    required: function required(field) {
+        return 'The ' + field + ' field is required (\u5FC5\u586B\u9879).';
+    },
+    size: function size(field, _ref27) {
+        var _ref28 = _slicedToArray(_ref27, 1),
+            _size = _ref28[0];
+
+        return 'The ' + field + ' size must be less than ' + Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* formatFileSize */])(_size) + '.';
+    },
+    url: function url(field) {
+        return 'The ' + field + ' field is not a valid URL.';
+    }
+};
+
+var locale = {
+    name: 'en',
+    messages: messages,
+    attributes: {}
+};
+
+if (Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* isDefinedGlobally */])()) {
+    // eslint-disable-next-line
+    VeeValidate.Validator.localize(_defineProperty({}, locale.name, locale));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (locale);
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatFileSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isDefinedGlobally; });
+/**
+ * Formates file size.
+ *
+ * @param {Number|String} size
+ */
+var formatFileSize = function formatFileSize(size) {
+  var units = ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  var threshold = 1024;
+  size = Number(size) * threshold;
+  var i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
+  return (size / Math.pow(threshold, i)).toFixed(2) * 1 + ' ' + units[i];
+};
+
+/**
+ * Checks if vee-validate is defined globally.
+ */
+var isDefinedGlobally = function isDefinedGlobally() {
+  return typeof VeeValidate !== 'undefined';
+};
 
 /***/ })
 /******/ ]);

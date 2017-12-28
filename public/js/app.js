@@ -47185,7 +47185,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-8142f38c], .fade-leave-active[data-v-8142f38c] {\n    -webkit-transition: opacity .6s;\n    transition: opacity .6s\n}\n.fade-enter[data-v-8142f38c], .fade-leave-to[data-v-8142f38c] {\n    opacity: 0\n}\n", ""]);
 
 // exports
 

@@ -5,6 +5,7 @@ const About = require('./components/pages/About');
 const Post = require('./components/posts/Post');
 const Register = require('./components/register/Register');
 const Confirm = require('./components/common/Confirm');
+const Login = require('./components/login/Login');
 
 const routes = [
     {path: '/', component: Home},
@@ -12,7 +13,8 @@ const routes = [
     {path: '/about', component: About},
     {path: '/posts/:postId', name: 'post', component: Post},
     {path: '/register', name: 'register', component: Register},
-    {path: '/confirm', name:'confirm', component: Confirm}
+    {path: '/confirm', name:'confirm', component: Confirm},
+    {path: '/login', name: 'login', component: Login},
 ];
 
 export default new VueRouter({

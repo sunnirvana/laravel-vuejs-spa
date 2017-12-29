@@ -39,7 +39,7 @@
 
             <div class="col-md-6">
                 <input v-validate data-vv-rules="required|confirmed:password" data-vv-as="CONFIRMATION"
-                        id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                       id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 <span class="help-block" v-show="errors.has('password_confirmation')">{{ errors.first('password_confirmation')}}</span>
             </div>
         </div>
@@ -66,22 +66,23 @@
         },
         methods: {
             register: function () {
-                // don't register if any field validation is failed
-                if (this.errors.count() > 0) {
-                    return
-                }
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        let formData = {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password
+                        };
 
-                let formData = {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password
-                };
-
-                axios.post('/api/register', formData).then(response => {
-                    console.log(response.data.status, response.data.message);
-                    this.$router.push('/confirm');
+                        axios.post('/api/register', formData).then(response => {
+                            console.log(response.data.status, response.data.message);
+                            this.$router.push('/confirm');
+                        });
+                    }
                 });
 
+                // go to login if any validation failed
+                this.$router.push({name: 'login'});
             }
         }
     }

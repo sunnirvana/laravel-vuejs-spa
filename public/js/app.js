@@ -4005,7 +4005,7 @@ if (inBrowser && window.Vue) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(79);
+module.exports = __webpack_require__(93);
 
 
 /***/ }),
@@ -4016,10 +4016,10 @@ module.exports = __webpack_require__(79);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__locale_en_js__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__locale_en_js__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate__ = __webpack_require__(92);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -45849,8 +45849,9 @@ var About = __webpack_require__(49);
 var Post = __webpack_require__(52);
 var Register = __webpack_require__(55);
 var Confirm = __webpack_require__(66);
+var Login = __webpack_require__(69);
 
-var routes = [{ path: '/', component: Home }, { path: '/home', component: Home }, { path: '/about', component: About }, { path: '/posts/:postId', name: 'post', component: Post }, { path: '/register', name: 'register', component: Register }, { path: '/confirm', name: 'confirm', component: Confirm }];
+var routes = [{ path: '/', component: Home }, { path: '/home', component: Home }, { path: '/about', component: About }, { path: '/posts/:postId', name: 'post', component: Post }, { path: '/register', name: 'register', component: Register }, { path: '/confirm', name: 'confirm', component: Confirm }, { path: '/login', name: 'login', component: Login }];
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     mode: 'history',
@@ -46562,7 +46563,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46644,21 +46645,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         register: function register() {
             var _this = this;
 
-            // don't register if any field validation is failed
-            if (this.errors.count() > 0) {
-                return;
-            }
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    var formData = {
+                        name: _this.name,
+                        email: _this.email,
+                        password: _this.password
+                    };
 
-            var formData = {
-                name: this.name,
-                email: this.email,
-                password: this.password
-            };
-
-            axios.post('/api/register', formData).then(function (response) {
-                console.log(response.data.status, response.data.message);
-                _this.$router.push('/confirm');
+                    axios.post('/api/register', formData).then(function (response) {
+                        console.log(response.data.status, response.data.message);
+                        _this.$router.push('/confirm');
+                    });
+                }
             });
+
+            // go to login if any validation failed
+            this.$router.push({ name: 'login' });
         }
     }
 });
@@ -47112,7 +47115,515 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(72)
 /* template */
+var __vue_template__ = __webpack_require__(79)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-ba0d9948"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/login/Login.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ba0d9948", Component.options)
+  } else {
+    hotAPI.reload("data-v-ba0d9948", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(71);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("142632d8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ba0d9948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Login.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ba0d9948\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoginForm__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LoginForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__LoginForm__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "login",
+    components: {
+        LoginForm: __WEBPACK_IMPORTED_MODULE_0__LoginForm___default.a
+    }
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(74)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(76)
+/* template */
 var __vue_template__ = __webpack_require__(78)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-cf1cbf80"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/login/LoginForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cf1cbf80", Component.options)
+  } else {
+    hotAPI.reload("data-v-cf1cbf80", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(75);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("a8f880ec", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf1cbf80\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./LoginForm.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf1cbf80\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./LoginForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper_jwt__ = __webpack_require__(77);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "login-form",
+    data: function data() {
+        return {
+            email: '',
+            password: ''
+        };
+    },
+
+    methods: {
+        login: function login() {
+            // don't login if any field validation is failed
+            if (this.errors.count() > 0) {
+                return;
+            }
+
+            var formData = {
+                grant_type: 'password',
+                username: this.email,
+                password: this.password,
+                client_id: '2',
+                client_secret: 'kYqXCluhs6xoGmsoErxKkNnSThdEMhzbr4sVDGGl'
+            };
+
+            axios.post('/oauth/token', formData).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setToken(response.data.access_token);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    setToken: function setToken(token) {
+        window.localStorage.setItem('jwt_token', token);
+    },
+    getToken: function getToken() {
+        return window.localStorage.getItem('jwt_token');
+    },
+    removeToken: function removeToken() {
+        window.localStorage.removeItem('jwt_token');
+    }
+});
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "form-horizontal",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.login($event)
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "form-group",
+          class: { "has-error": _vm.errors.has("email") }
+        },
+        [
+          _c(
+            "label",
+            { staticClass: "col-md-4 control-label", attrs: { for: "email" } },
+            [_vm._v("E-Mail Address")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                },
+                { name: "validate", rawName: "v-validate" }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                "data-vv-rules": "required|email",
+                "data-vv-as": "EMAIL",
+                id: "email",
+                type: "email",
+                name: "email",
+                required: ""
+              },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.errors.has("email"),
+                    expression: "errors.has('email')"
+                  }
+                ],
+                staticClass: "help-block"
+              },
+              [_vm._v(_vm._s(_vm.errors.first("email")))]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "form-group",
+          class: { "has-error": _vm.errors.has("password") }
+        },
+        [
+          _c(
+            "label",
+            {
+              staticClass: "col-md-4 control-label",
+              attrs: { for: "password" }
+            },
+            [_vm._v("Password")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                },
+                { name: "validate", rawName: "v-validate" }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                "data-vv-rules": "required|min:6",
+                "data-vv-as": "PASSWORD",
+                id: "password",
+                type: "password",
+                name: "password",
+                required: ""
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.errors.has("password"),
+                    expression: "errors.has('password')"
+                  }
+                ],
+                staticClass: "help-block"
+              },
+              [_vm._v(_vm._s(_vm.errors.first("password")))]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("\n                Login\n            ")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cf1cbf80", module.exports)
+  }
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
+    _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [_vm._v("Login")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [_c("login-form")], 1)
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ba0d9948", module.exports)
+  }
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(81)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(83)
+/* template */
+var __vue_template__ = __webpack_require__(89)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47151,13 +47662,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(82);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47177,7 +47688,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47191,12 +47702,12 @@ exports.push([module.i, "\n.fade-enter-active[data-v-8142f38c], .fade-leave-acti
 
 
 /***/ }),
-/* 72 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_TopMenu__);
 //
 //
@@ -47218,19 +47729,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(74)
+  __webpack_require__(85)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(76)
+var __vue_script__ = __webpack_require__(87)
 /* template */
-var __vue_template__ = __webpack_require__(77)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47269,13 +47780,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47295,7 +47806,7 @@ if(false) {
 }
 
 /***/ }),
-/* 75 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -47303,17 +47814,18 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 76 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -47330,7 +47842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47351,6 +47863,10 @@ var render = function() {
         "ul",
         { staticClass: "nav navbar-nav" },
         [
+          _c("router-link", { attrs: { tag: "li", to: "/login" } }, [
+            _c("a", [_vm._v("Login")])
+          ]),
+          _vm._v(" "),
           _c("router-link", { attrs: { tag: "li", to: "/register" } }, [
             _c("a", [_vm._v("Register")])
           ]),
@@ -47376,7 +47892,7 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47409,21 +47925,215 @@ if (false) {
 }
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports) {
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(91);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var messages = {
+    _default: function _default(field) {
+        return 'The ' + field + ' value is not valid.';
+    },
+    after: function after(field, _ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            target = _ref2[0],
+            inclusion = _ref2[1];
+
+        return 'The ' + field + ' must be after ' + (inclusion ? 'or equal to ' : '') + target + '.';
+    },
+    alpha_dash: function alpha_dash(field) {
+        return 'The ' + field + ' field may contain alpha-numeric characters as well as dashes and underscores.';
+    },
+    alpha_num: function alpha_num(field) {
+        return 'The ' + field + ' field may only contain alpha-numeric characters.';
+    },
+    alpha_spaces: function alpha_spaces(field) {
+        return 'The ' + field + ' field may only contain alphabetic characters as well as spaces.';
+    },
+    alpha: function alpha(field) {
+        return 'The ' + field + ' field may only contain alphabetic characters.';
+    },
+    before: function before(field, _ref3) {
+        var _ref4 = _slicedToArray(_ref3, 2),
+            target = _ref4[0],
+            inclusion = _ref4[1];
+
+        return 'The ' + field + ' must be before ' + (inclusion ? 'or equal to ' : '') + target + '.';
+    },
+    between: function between(field, _ref5) {
+        var _ref6 = _slicedToArray(_ref5, 2),
+            min = _ref6[0],
+            max = _ref6[1];
+
+        return 'The ' + field + ' field must be between ' + min + ' and ' + max + '.';
+    },
+    confirmed: function confirmed(field) {
+        return 'The ' + field + ' confirmation does not match.';
+    },
+    credit_card: function credit_card(field) {
+        return 'The ' + field + ' field is invalid.';
+    },
+    date_between: function date_between(field, _ref7) {
+        var _ref8 = _slicedToArray(_ref7, 2),
+            min = _ref8[0],
+            max = _ref8[1];
+
+        return 'The ' + field + ' must be between ' + min + ' and ' + max + '.';
+    },
+    date_format: function date_format(field, _ref9) {
+        var _ref10 = _slicedToArray(_ref9, 1),
+            format = _ref10[0];
+
+        return 'The ' + field + ' must be in the format ' + format + '.';
+    },
+    decimal: function decimal(field) {
+        var _ref11 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [],
+            _ref12 = _slicedToArray(_ref11, 1),
+            _ref12$ = _ref12[0],
+            decimals = _ref12$ === undefined ? '*' : _ref12$;
+
+        return 'The ' + field + ' field must be numeric and may contain ' + (!decimals || decimals === '*' ? '' : decimals) + ' decimal points.';
+    },
+    digits: function digits(field, _ref13) {
+        var _ref14 = _slicedToArray(_ref13, 1),
+            length = _ref14[0];
+
+        return 'The ' + field + ' field must be numeric and exactly contain ' + length + ' digits.';
+    },
+    dimensions: function dimensions(field, _ref15) {
+        var _ref16 = _slicedToArray(_ref15, 2),
+            width = _ref16[0],
+            height = _ref16[1];
+
+        return 'The ' + field + ' field must be ' + width + ' pixels by ' + height + ' pixels.';
+    },
+    email: function email(field) {
+        return 'The ' + field + ' field must be a valid email.';
+    },
+    ext: function ext(field) {
+        return 'The ' + field + ' field must be a valid file.';
+    },
+    image: function image(field) {
+        return 'The ' + field + ' field must be an image.';
+    },
+    in: function _in(field) {
+        return 'The ' + field + ' field must be a valid value.';
+    },
+    integer: function integer(field) {
+        return 'The ' + field + ' field must be an integer.';
+    },
+    ip: function ip(field) {
+        return 'The ' + field + ' field must be a valid ip address.';
+    },
+    length: function length(field, _ref17) {
+        var _ref18 = _slicedToArray(_ref17, 2),
+            _length = _ref18[0],
+            max = _ref18[1];
+
+        if (max) {
+            return 'The ' + field + ' length be between ' + _length + ' and ' + max + '.';
+        }
+
+        return 'The ' + field + ' length must be ' + _length + '.';
+    },
+    max: function max(field, _ref19) {
+        var _ref20 = _slicedToArray(_ref19, 1),
+            length = _ref20[0];
+
+        return 'The ' + field + ' field may not be greater than ' + length + ' characters.';
+    },
+    max_value: function max_value(field, _ref21) {
+        var _ref22 = _slicedToArray(_ref21, 1),
+            max = _ref22[0];
+
+        return 'The ' + field + ' field must be ' + max + ' or less.';
+    },
+    mimes: function mimes(field) {
+        return 'The ' + field + ' field must have a valid file type.';
+    },
+    min: function min(field, _ref23) {
+        var _ref24 = _slicedToArray(_ref23, 1),
+            length = _ref24[0];
+
+        return 'The ' + field + ' field must be at least ' + length + ' characters.';
+    },
+    min_value: function min_value(field, _ref25) {
+        var _ref26 = _slicedToArray(_ref25, 1),
+            min = _ref26[0];
+
+        return 'The ' + field + ' field must be ' + min + ' or more.';
+    },
+    not_in: function not_in(field) {
+        return 'The ' + field + ' field must be a valid value.';
+    },
+    numeric: function numeric(field) {
+        return 'The ' + field + ' field may only contain numeric characters.';
+    },
+    regex: function regex(field) {
+        return 'The ' + field + ' field format is invalid.';
+    },
+    required: function required(field) {
+        return 'The ' + field + ' field is required (\u5FC5\u586B\u9879).';
+    },
+    size: function size(field, _ref27) {
+        var _ref28 = _slicedToArray(_ref27, 1),
+            _size = _ref28[0];
+
+        return 'The ' + field + ' size must be less than ' + Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* formatFileSize */])(_size) + '.';
+    },
+    url: function url(field) {
+        return 'The ' + field + ' field is not a valid URL.';
+    }
+};
+
+var locale = {
+    name: 'en',
+    messages: messages,
+    attributes: {}
+};
+
+if (Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* isDefinedGlobally */])()) {
+    // eslint-disable-next-line
+    VeeValidate.Validator.localize(_defineProperty({}, locale.name, locale));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (locale);
 
 /***/ }),
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatFileSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isDefinedGlobally; });
+/**
+ * Formates file size.
+ *
+ * @param {Number|String} size
+ */
+var formatFileSize = function formatFileSize(size) {
+  var units = ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  var threshold = 1024;
+  size = Number(size) * threshold;
+  var i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
+  return (size / Math.pow(threshold, i)).toFixed(2) * 1 + ' ' + units[i];
+};
+
+/**
+ * Checks if vee-validate is defined globally.
+ */
+var isDefinedGlobally = function isDefinedGlobally() {
+  return typeof VeeValidate !== 'undefined';
+};
+
+/***/ }),
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54413,212 +55123,10 @@ var index_esm = {
 
 
 /***/ }),
-/* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 93 */
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(90);
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var messages = {
-    _default: function _default(field) {
-        return 'The ' + field + ' value is not valid.';
-    },
-    after: function after(field, _ref) {
-        var _ref2 = _slicedToArray(_ref, 2),
-            target = _ref2[0],
-            inclusion = _ref2[1];
-
-        return 'The ' + field + ' must be after ' + (inclusion ? 'or equal to ' : '') + target + '.';
-    },
-    alpha_dash: function alpha_dash(field) {
-        return 'The ' + field + ' field may contain alpha-numeric characters as well as dashes and underscores.';
-    },
-    alpha_num: function alpha_num(field) {
-        return 'The ' + field + ' field may only contain alpha-numeric characters.';
-    },
-    alpha_spaces: function alpha_spaces(field) {
-        return 'The ' + field + ' field may only contain alphabetic characters as well as spaces.';
-    },
-    alpha: function alpha(field) {
-        return 'The ' + field + ' field may only contain alphabetic characters.';
-    },
-    before: function before(field, _ref3) {
-        var _ref4 = _slicedToArray(_ref3, 2),
-            target = _ref4[0],
-            inclusion = _ref4[1];
-
-        return 'The ' + field + ' must be before ' + (inclusion ? 'or equal to ' : '') + target + '.';
-    },
-    between: function between(field, _ref5) {
-        var _ref6 = _slicedToArray(_ref5, 2),
-            min = _ref6[0],
-            max = _ref6[1];
-
-        return 'The ' + field + ' field must be between ' + min + ' and ' + max + '.';
-    },
-    confirmed: function confirmed(field) {
-        return 'The ' + field + ' confirmation does not match.';
-    },
-    credit_card: function credit_card(field) {
-        return 'The ' + field + ' field is invalid.';
-    },
-    date_between: function date_between(field, _ref7) {
-        var _ref8 = _slicedToArray(_ref7, 2),
-            min = _ref8[0],
-            max = _ref8[1];
-
-        return 'The ' + field + ' must be between ' + min + ' and ' + max + '.';
-    },
-    date_format: function date_format(field, _ref9) {
-        var _ref10 = _slicedToArray(_ref9, 1),
-            format = _ref10[0];
-
-        return 'The ' + field + ' must be in the format ' + format + '.';
-    },
-    decimal: function decimal(field) {
-        var _ref11 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [],
-            _ref12 = _slicedToArray(_ref11, 1),
-            _ref12$ = _ref12[0],
-            decimals = _ref12$ === undefined ? '*' : _ref12$;
-
-        return 'The ' + field + ' field must be numeric and may contain ' + (!decimals || decimals === '*' ? '' : decimals) + ' decimal points.';
-    },
-    digits: function digits(field, _ref13) {
-        var _ref14 = _slicedToArray(_ref13, 1),
-            length = _ref14[0];
-
-        return 'The ' + field + ' field must be numeric and exactly contain ' + length + ' digits.';
-    },
-    dimensions: function dimensions(field, _ref15) {
-        var _ref16 = _slicedToArray(_ref15, 2),
-            width = _ref16[0],
-            height = _ref16[1];
-
-        return 'The ' + field + ' field must be ' + width + ' pixels by ' + height + ' pixels.';
-    },
-    email: function email(field) {
-        return 'The ' + field + ' field must be a valid email.';
-    },
-    ext: function ext(field) {
-        return 'The ' + field + ' field must be a valid file.';
-    },
-    image: function image(field) {
-        return 'The ' + field + ' field must be an image.';
-    },
-    in: function _in(field) {
-        return 'The ' + field + ' field must be a valid value.';
-    },
-    integer: function integer(field) {
-        return 'The ' + field + ' field must be an integer.';
-    },
-    ip: function ip(field) {
-        return 'The ' + field + ' field must be a valid ip address.';
-    },
-    length: function length(field, _ref17) {
-        var _ref18 = _slicedToArray(_ref17, 2),
-            _length = _ref18[0],
-            max = _ref18[1];
-
-        if (max) {
-            return 'The ' + field + ' length be between ' + _length + ' and ' + max + '.';
-        }
-
-        return 'The ' + field + ' length must be ' + _length + '.';
-    },
-    max: function max(field, _ref19) {
-        var _ref20 = _slicedToArray(_ref19, 1),
-            length = _ref20[0];
-
-        return 'The ' + field + ' field may not be greater than ' + length + ' characters.';
-    },
-    max_value: function max_value(field, _ref21) {
-        var _ref22 = _slicedToArray(_ref21, 1),
-            max = _ref22[0];
-
-        return 'The ' + field + ' field must be ' + max + ' or less.';
-    },
-    mimes: function mimes(field) {
-        return 'The ' + field + ' field must have a valid file type.';
-    },
-    min: function min(field, _ref23) {
-        var _ref24 = _slicedToArray(_ref23, 1),
-            length = _ref24[0];
-
-        return 'The ' + field + ' field must be at least ' + length + ' characters.';
-    },
-    min_value: function min_value(field, _ref25) {
-        var _ref26 = _slicedToArray(_ref25, 1),
-            min = _ref26[0];
-
-        return 'The ' + field + ' field must be ' + min + ' or more.';
-    },
-    not_in: function not_in(field) {
-        return 'The ' + field + ' field must be a valid value.';
-    },
-    numeric: function numeric(field) {
-        return 'The ' + field + ' field may only contain numeric characters.';
-    },
-    regex: function regex(field) {
-        return 'The ' + field + ' field format is invalid.';
-    },
-    required: function required(field) {
-        return 'The ' + field + ' field is required (\u5FC5\u586B\u9879).';
-    },
-    size: function size(field, _ref27) {
-        var _ref28 = _slicedToArray(_ref27, 1),
-            _size = _ref28[0];
-
-        return 'The ' + field + ' size must be less than ' + Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* formatFileSize */])(_size) + '.';
-    },
-    url: function url(field) {
-        return 'The ' + field + ' field is not a valid URL.';
-    }
-};
-
-var locale = {
-    name: 'en',
-    messages: messages,
-    attributes: {}
-};
-
-if (Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* isDefinedGlobally */])()) {
-    // eslint-disable-next-line
-    VeeValidate.Validator.localize(_defineProperty({}, locale.name, locale));
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (locale);
-
-/***/ }),
-/* 90 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatFileSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isDefinedGlobally; });
-/**
- * Formates file size.
- *
- * @param {Number|String} size
- */
-var formatFileSize = function formatFileSize(size) {
-  var units = ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  var threshold = 1024;
-  size = Number(size) * threshold;
-  var i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
-  return (size / Math.pow(threshold, i)).toFixed(2) * 1 + ' ' + units[i];
-};
-
-/**
- * Checks if vee-validate is defined globally.
- */
-var isDefinedGlobally = function isDefinedGlobally() {
-  return typeof VeeValidate !== 'undefined';
-};
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

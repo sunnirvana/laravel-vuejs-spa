@@ -46655,7 +46655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     axios.post('/api/register', formData).then(function (response) {
                         console.log(response.data.status, response.data.message);
-                        _this.$router.push('/confirm');
+                        _this.$router.push({ name: 'confirm' });
                     });
                 }
             });
@@ -47308,7 +47308,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47369,22 +47369,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         login: function login() {
+            var _this = this;
+
             // don't login if any field validation is failed
-            if (this.errors.count() > 0) {
-                return;
-            }
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    var formData = {
+                        email: _this.email,
+                        password: _this.password
+                    };
 
-            var formData = {
-                grant_type: 'password',
-                username: this.email,
-                password: this.password,
-                client_id: '2',
-                client_secret: 'kYqXCluhs6xoGmsoErxKkNnSThdEMhzbr4sVDGGl'
-            };
-
-            axios.post('/oauth/token', formData).then(function (response) {
-                __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setToken(response.data.access_token);
+                    axios.post('/api/login', formData).then(function (response) {
+                        console.log(response);
+                        __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setToken(response.data.access_token);
+                        _this.$router.push({ name: 'confirm' });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
             });
+
+            // go to login if any validation failed
+            this.$router.push({ name: 'login' });
         }
     }
 });

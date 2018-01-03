@@ -4053,8 +4053,8 @@ window.Vue = __webpack_require__(39);
 
 
 
-__WEBPACK_IMPORTED_MODULE_8_vee_validate__["a" /* Validator */].localize('ar', __WEBPACK_IMPORTED_MODULE_7__locale_en_js__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8_vee_validate__["b" /* default */]);
+__WEBPACK_IMPORTED_MODULE_8_vee_validate__["b" /* Validator */].localize('ar', __WEBPACK_IMPORTED_MODULE_7__locale_en_js__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8_vee_validate__["c" /* default */]);
 
 // Attach user token if it exists.
 __WEBPACK_IMPORTED_MODULE_6_axios___default.a.interceptors.request.use(function (config) {
@@ -47367,7 +47367,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47381,6 +47381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper_jwt__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(92);
 //
 //
 //
@@ -47416,15 +47417,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "login-form", data: function data() {
+    name: "login-form",
+    data: function data() {
         return {
-            email: '', password: ''
+            email: '',
+            password: '',
+            bag: new __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* ErrorBag */]()
         };
+    },
+
+    watch: {
+        password: function password() {
+            if (this.bag.count()) {
+                this.bag.clear();
+            }
+        }
     },
     methods: {
         login: function login() {
@@ -47448,6 +47462,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this.$router.push({ name: 'profile' });
                     }).catch(function (error) {
                         console.log(error);
+                        // Credentials not matched
+                        if (error.response.status === 421) {
+                            _this.bag.add('email', 'Credentials not matched', 'auth');
+                        }
                     });
                 }
             });
@@ -47546,7 +47564,9 @@ var render = function() {
         "div",
         {
           staticClass: "form-group",
-          class: { "has-error": _vm.errors.has("password") }
+          class: {
+            "has-error": _vm.errors.has("password") || _vm.bag.has("email:auth")
+          }
         },
         [
           _c(
@@ -47603,6 +47623,22 @@ var render = function() {
                 staticClass: "help-block"
               },
               [_vm._v(_vm._s(_vm.errors.first("password")))]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.bag.has("email:auth"),
+                    expression: "bag.has('email:auth')"
+                  }
+                ],
+                staticClass: "help-block"
+              },
+              [_vm._v(_vm._s(_vm.bag.first("email:auth")))]
             )
           ])
         ]
@@ -48263,8 +48299,8 @@ var isDefinedGlobally = function isDefinedGlobally() {
 /* unused harmony export directive */
 /* unused harmony export mixin */
 /* unused harmony export mapFields */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Validator; });
-/* unused harmony export ErrorBag */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Validator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ErrorBag; });
 /* unused harmony export Rules */
 /* unused harmony export version */
 /**
@@ -55240,7 +55276,7 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["b"] = (index_esm);
+/* harmony default export */ __webpack_exports__["c"] = (index_esm);
 
 
 /***/ }),

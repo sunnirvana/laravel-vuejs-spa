@@ -12,6 +12,11 @@ export default {
             state.authenticated = true;
             state.name = payload.user.name;
             state.email = payload.user.email;
+        },
+        [types.REMOVE_AUTH_USER](state) {
+            state.authenticated = false;
+            state.name = null;
+            state.email = null;
         }
     },
     actions: {
@@ -22,6 +27,9 @@ export default {
                     user: response.data
                 });
             });
+        },
+        RemoveAuthUser({ commit}) {
+            commit({ type: types.REMOVE_AUTH_USER})
         }
     }
 }

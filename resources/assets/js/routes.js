@@ -29,13 +29,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
-        if (Store.state.authenticated || JWT.getToken()) {
+        if (Store.state.AuthUser.authenticated || JWT.getToken()) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (Store.state.authenticated || JWT.getToken()) {
+        if (Store.state.AuthUser.authenticated || JWT.getToken()) {
             next({ name: 'home' });
         } else {
             next();

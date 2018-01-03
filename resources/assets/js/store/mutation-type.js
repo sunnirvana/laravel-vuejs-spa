@@ -1,1 +1,2 @@
 export const STORE_AUTH_USER = 'STORE_AUTH_USER';
+export const REMOVE_AUTH_USER = 'REMOVE_AUTH_USER';

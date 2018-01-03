@@ -16,12 +16,12 @@ class TokenProxy
 {
     protected $client = null;
 
-    public function __construct (Client $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    public function proxy ($grantType, $data = [])
+    public function proxy($grantType, $data = [])
     {
         // prepare parameters
         $params = array_merge([
@@ -58,7 +58,7 @@ class TokenProxy
 
     }
 
-    public function login ($email, $password)
+    public function login($email, $password)
     {
         // only the active user can login
         if (auth()->attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
@@ -70,5 +70,29 @@ class TokenProxy
             'status'  => false,
             'message' => 'Credentials not matched',
         ], 421);
+    }
+
+    public function logout()
+    {
+        $user = auth('api')->user();
+        $accessToken = $user->token();
+
+        // revoke refresh_token
+        app('db')->table('oauth_refresh_tokens')
+            ->where('access_token_id', $accessToken->id)
+            ->update([
+            'revoked' => true,
+        ]);
+
+        // revoke access_token
+        $accessToken->revoke();
+
+        // remove refresh token from cookie
+        app('cookie')->forget('refresh_token');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'logout!'
+        ], 204);
     }
 }

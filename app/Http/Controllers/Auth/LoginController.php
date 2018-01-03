@@ -34,17 +34,22 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(TokenProxy $proxy)
+    public function __construct (TokenProxy $proxy)
     {
         $this->middleware('guest')->except('logout');
         $this->proxy = $proxy;
     }
 
-    public function login()
+    public function login ()
     {
         $this->validateLogin(request());
 
-        // call TokenProxy to sent token
+        // call TokejnProxy to sent token
         return $this->proxy->login(request('email'), request('password'));
+    }
+
+    public function logout ()
+    {
+        return $this->proxy->logout();
     }
 }

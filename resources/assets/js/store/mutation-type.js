@@ -1,0 +1,1 @@
+export const STORE_AUTH_USER = 'STORE_AUTH_USER';

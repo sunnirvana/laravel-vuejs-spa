@@ -34,38 +34,41 @@
 </template>
 
 <script>
-    import JWTToken from './../helper/jwt';
+    import jwtToken from './../../helper/jwt';
+    import axios from 'axios';
 
     export default {
-        name: "login-form",
-        data() {
+        name: "login-form", data() {
             return {
-                email: '',
-                password: ''
+                email: '', password: ''
             }
-        },
-        methods: {
+        }, methods: {
             login: function () {
                 // don't login if any field validation is failed
                 this.$validator.validateAll().then(result => {
                     if (result) {
                         let formData = {
-                            email: this.email,
-                            password: this.password,
+                            email: this.email, password: this.password,
                         };
 
                         axios.post('/api/login', formData).then(response => {
-                            console.log(response);
-                            JWTToken.setToken(response.data.access_token);
-                            this.$router.push({name: 'confirm'});
+                            // locally store access token
+                            jwtToken.setToken(response.data.token);
+
+                            // store auth user by vuex
+                            this.$store.dispatch('SetAuthUser');
+
+                            // go to page
+                            this.$router.push({ name: 'profile' });
                         }).catch(error => {
                             console.log(error);
                         });
+
                     }
                 });
 
                 // go to login if any validation failed
-                this.$router.push({name: 'login'});
+                this.$router.push({ name: 'login' });
             }
         }
     }

@@ -12,26 +12,33 @@ import Login from './components/login/Login';
 import Profile from './components/common/Profile';
 
 const routes = [
-    { path: '/', component: Home, meta: { requireAuth: false } },
-    { path: '/home', component: Home, meta: { requireAuth: false } },
-    { path: '/about', component: About, meta: { requireAuth: false } },
-    { path: '/posts/:postId', name: 'post', component: Post, meta: { requireAuth: false } },
-    { path: '/register', name: 'register', component: Register, meta: { requireAuth: false } },
-    { path: '/confirm', name: 'confirm', component: Confirm, meta: { requireAuth: false } },
-    { path: '/login', name: 'login', component: Login, meta: { requireAuth: false } },
+    { path: '/', name: 'root', component: Home, meta: {} },
+    { path: '/home', name: 'home', component: Home, meta: {} },
+    { path: '/about', name: 'about', component: About, meta: {} },
+    { path: '/posts/:postId', name: 'post', component: Post, meta: {} },
+    { path: '/confirm', name: 'confirm', component: Confirm, meta: {} },
+    { path: '/login', name: 'login', component: Login, meta: { requireGuest: true } },
+    { path: '/register', name: 'register', component: Register, meta: { requireGuest: true } },
     { path: '/profile', name: 'profile', component: Profile, meta: { requireAuth: true } },
 ];
 
 const router = new VueRouter({
-    mode: 'history', routes
+    mode: 'history',
+    routes
 });
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
-        if (Store.state.authenticated || JWT.getToken() && JWT.getToken() !== 'undefined') {
+        if (Store.state.authenticated || JWT.getToken()) {
             next();
         } else {
             next({ name: 'login' });
+        }
+    } else if (to.meta.requireGuest) {
+        if (Store.state.authenticated || JWT.getToken()) {
+            next({ name: 'home' });
+        } else {
+            next();
         }
     } else {
         next();

@@ -4058,7 +4058,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8_vee_
 
 // Attach user token if it exists.
 __WEBPACK_IMPORTED_MODULE_6_axios___default.a.interceptors.request.use(function (config) {
-    if (__WEBPACK_IMPORTED_MODULE_5__helper_jwt__["a" /* default */].getToken() && __WEBPACK_IMPORTED_MODULE_5__helper_jwt__["a" /* default */] !== 'undefined') {
+    if (__WEBPACK_IMPORTED_MODULE_5__helper_jwt__["a" /* default */].getToken()) {
         config.headers['Authorization'] = 'Bearer ' + __WEBPACK_IMPORTED_MODULE_5__helper_jwt__["a" /* default */].getToken();
     }
     return config;
@@ -45890,18 +45890,25 @@ exports.clearImmediate = clearImmediate;
 
 
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: { requireAuth: false } }, { path: '/home', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: { requireAuth: false } }, { path: '/about', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default.a, meta: { requireAuth: false } }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default.a, meta: { requireAuth: false } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default.a, meta: { requireAuth: false } }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default.a, meta: { requireAuth: false } }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default.a, meta: { requireAuth: false } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default.a, meta: { requireAuth: true } }];
+var routes = [{ path: '/', name: 'root', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/about', name: 'about', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default.a, meta: {} }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default.a, meta: {} }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default.a, meta: {} }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default.a, meta: { requireGuest: true } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default.a, meta: { requireGuest: true } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default.a, meta: { requireAuth: true } }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
-    mode: 'history', routes: routes
+    mode: 'history',
+    routes: routes
 });
 
 router.beforeEach(function (to, from, next) {
     if (to.meta.requireAuth) {
-        if (__WEBPACK_IMPORTED_MODULE_2__store_index__["a" /* default */].state.authenticated || __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken() && __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken() !== 'undefined') {
+        if (__WEBPACK_IMPORTED_MODULE_2__store_index__["a" /* default */].state.authenticated || __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
             next();
         } else {
             next({ name: 'login' });
+        }
+    } else if (to.meta.requireGuest) {
+        if (__WEBPACK_IMPORTED_MODULE_2__store_index__["a" /* default */].state.authenticated || __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
+            next({ name: 'home' });
+        } else {
+            next();
         }
     } else {
         next();
@@ -47755,6 +47762,7 @@ exports.push([module.i, "\n.fade-enter-active[data-v-8142f38c], .fade-leave-acti
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_TopMenu__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helper_jwt__ = __webpack_require__(108);
 //
 //
 //
@@ -47765,12 +47773,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "app",
     components: {
         TopMenu: __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default.a
+    },
+    created: function created() {
+        // keep auth user info store
+        if (__WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
+            this.$store.dispatch('SetAuthUser');
+        }
     }
 });
 
@@ -56327,7 +56343,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var commit = _ref.commit;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/user').then(function (response) {
-                console.log(response);
                 commit({
                     type: __WEBPACK_IMPORTED_MODULE_0__mutation_type__["a" /* STORE_AUTH_USER */],
                     user: response.data
@@ -56344,7 +56359,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     setToken: function setToken(token) {
-        window.localStorage.setItem('jwt_token', token);
+        if (token && token !== 'undefined') {
+            window.localStorage.setItem('jwt_token', token);
+        } else {
+            window.localStorage.setItem('jwt_token', '');
+        }
     },
     getToken: function getToken() {
         return window.localStorage.getItem('jwt_token');

@@ -9,11 +9,19 @@
 </template>
 
 <script>
-    import TopMenu from './common/TopMenu'
+    import TopMenu from './common/TopMenu';
+    import jwtToken from '../helper/jwt';
+
     export default {
         name: "app",
         components: {
             TopMenu
+        },
+        created() {
+            // keep auth user info store
+            if (jwtToken.getToken()) {
+                this.$store.dispatch('SetAuthUser');
+            }
         }
     }
 </script>

@@ -17,7 +17,6 @@ export default {
     actions: {
         SetAuthUser({ commit }) {
             axios.get('/api/user').then(response => {
-                console.log(response);
                 commit({
                     type: types.STORE_AUTH_USER,
                     user: response.data

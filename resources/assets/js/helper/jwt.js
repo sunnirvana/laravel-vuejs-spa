@@ -1,6 +1,10 @@
 export default {
     setToken(token) {
-        window.localStorage.setItem('jwt_token', token);
+        if (token && token !== 'undefined') {
+            window.localStorage.setItem('jwt_token', token);
+        } else {
+            window.localStorage.setItem('jwt_token', '');
+        }
     },
     getToken() {
         return window.localStorage.getItem('jwt_token');

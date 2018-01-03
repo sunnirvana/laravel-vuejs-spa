@@ -31,7 +31,7 @@ Vue.use(VeeValidate);
 
 // Attach user token if it exists.
 axios.interceptors.request.use(function (config) {
-    if (jwtToken.getToken() && jwtToken !== 'undefined') {
+    if (jwtToken.getToken()) {
         config.headers[ 'Authorization' ] = 'Bearer ' + jwtToken.getToken();
     }
     return config;

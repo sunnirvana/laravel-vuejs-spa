@@ -1,5 +1,4 @@
 import VueRouter from 'vue-router';
-import JWT from './helper/jwt';
 import Store from './store/index';
 
 // Components
@@ -29,13 +28,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
-        if (Store.state.AuthUser.authenticated || JWT.getToken()) {
+        if (Store.state.AuthUser.authenticated) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (Store.state.AuthUser.authenticated || JWT.getToken()) {
+        if (Store.state.AuthUser.authenticated) {
             next({ name: 'home' });
         } else {
             next();

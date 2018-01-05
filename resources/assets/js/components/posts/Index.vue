@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">文章列表</div>
+            <div class="panel-heading">Articles</div>
 
             <div class="panel-body">
                 <div v-for="post in posts">

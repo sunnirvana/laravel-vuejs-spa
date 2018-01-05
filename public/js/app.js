@@ -45861,23 +45861,21 @@ exports.clearImmediate = clearImmediate;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helper_jwt__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Home__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_Home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_About__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_About__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_posts_Post__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_posts_Post__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_register_Register__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_register_Register__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_common_Confirm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_login_Login__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_login_Login__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_common_Profile__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_common_Profile__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_index__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Home__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_Home__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_About__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_About___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_About__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_posts_Post__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_posts_Post___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_posts_Post__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_register_Register__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_register_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_register_Register__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_common_Confirm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_login_Login__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_login_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_login_Login__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_common_Profile__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_common_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_common_Profile__);
 
 
 
@@ -45890,7 +45888,7 @@ exports.clearImmediate = clearImmediate;
 
 
 
-var routes = [{ path: '/', name: 'root', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/about', name: 'about', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default.a, meta: {} }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default.a, meta: {} }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default.a, meta: {} }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default.a, meta: { requireGuest: true } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default.a, meta: { requireGuest: true } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default.a, meta: { requireAuth: true } }];
+var routes = [{ path: '/', name: 'root', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default.a, meta: {} }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default.a, meta: {} }, { path: '/about', name: 'about', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_About___default.a, meta: {} }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_4__components_posts_Post___default.a, meta: {} }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm___default.a, meta: {} }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_7__components_login_Login___default.a, meta: { requireGuest: true } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_5__components_register_Register___default.a, meta: { requireGuest: true } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_common_Profile___default.a, meta: { requireAuth: true } }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     mode: 'history',
@@ -45899,13 +45897,13 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
 
 router.beforeEach(function (to, from, next) {
     if (to.meta.requireAuth) {
-        if (__WEBPACK_IMPORTED_MODULE_2__store_index__["a" /* default */].state.AuthUser.authenticated || __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
+        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (__WEBPACK_IMPORTED_MODULE_2__store_index__["a" /* default */].state.AuthUser.authenticated || __WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
+        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated) {
             next({ name: 'home' });
         } else {
             next();
@@ -46083,7 +46081,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
     _c("div", { staticClass: "panel panel-default" }, [
-      _c("div", { staticClass: "panel-heading" }, [_vm._v("文章列表")]),
+      _c("div", { staticClass: "panel-heading" }, [_vm._v("Articles")]),
       _vm._v(" "),
       _c(
         "div",
@@ -47367,7 +47365,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47378,10 +47376,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper_jwt__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vee_validate__ = __webpack_require__(92);
 //
 //
 //
@@ -47418,7 +47415,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -47429,7 +47425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             email: '',
             password: '',
-            bag: new __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* ErrorBag */]()
+            bag: new __WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* ErrorBag */]()
         };
     },
 
@@ -47451,15 +47447,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         email: _this.email, password: _this.password
                     };
 
-                    __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/login', formData).then(function (response) {
-                        // locally store access token
-                        __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setToken(response.data.token);
-
-                        // store auth user by vuex
-                        _this.$store.dispatch('SetAuthUser');
-
-                        // go to page
-                        _this.$router.push({ name: 'profile' });
+                    return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/login', formData).then(function (response) {
+                        // locally store access token and auth_id
+                        _this.$store.dispatch('storeTokens', response.data).then(function (response) {
+                            // store auth user by vuex
+                            _this.$store.dispatch('setAuthUser').then(function (response) {
+                                // go to page
+                                _this.$router.push({ name: 'home' });
+                            });
+                        });
                     }).catch(function (error) {
                         console.log(error);
                         // Credentials not matched
@@ -47819,9 +47815,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         TopMenu: __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default.a
     },
     created: function created() {
+        var _this = this;
+
         // keep auth user info store
         if (__WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getToken()) {
-            this.$store.dispatch('SetAuthUser');
+            this.$store.dispatch('setAuthUser').then(function (response) {
+                // nothing
+            }).catch(function (error) {
+                console.log(error);
+                if (__WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getAuthId()) {
+                    _this.$store.dispatch('refreshAuthToken');
+                } else {
+                    _this.$store.dispatch('removeToken');
+                }
+            });
         }
     }
 });
@@ -47912,7 +47919,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -47926,7 +47933,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helper_jwt__ = __webpack_require__(108);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -47946,7 +47952,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "top-menu",
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
@@ -47959,11 +47964,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var _this = this;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/logout').then(function (response) {
-                // clean user info in Vuex
-                _this.$store.dispatch('RemoveAuthUser');
+                // clean user info, auth_id and token
+                _this.$store.dispatch('removeAuthUser');
 
-                // remove locally stored token
-                __WEBPACK_IMPORTED_MODULE_2__helper_jwt__["a" /* default */].removeToken();
                 _this.$router.push({ name: 'login' });
             });
         }
@@ -55421,6 +55424,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_user__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_tokens__ = __webpack_require__(111);
+
 
 
 
@@ -55429,7 +55434,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
    modules: {
-      AuthUser: __WEBPACK_IMPORTED_MODULE_2__modules_auth_user__["a" /* default */]
+      AuthUser: __WEBPACK_IMPORTED_MODULE_2__modules_auth_user__["a" /* default */], Tokens: __WEBPACK_IMPORTED_MODULE_3__modules_tokens__["a" /* default */]
    },
    strict: true
 }));
@@ -56410,7 +56415,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         state.email = null;
     }), _mutations),
     actions: {
-        SetAuthUser: function SetAuthUser(_ref) {
+        setAuthUser: function setAuthUser(_ref) {
             var commit = _ref.commit;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/user').then(function (response) {
@@ -56420,10 +56425,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
             });
         },
-        RemoveAuthUser: function RemoveAuthUser(_ref2) {
-            var commit = _ref2.commit;
+        removeAuthUser: function removeAuthUser(_ref2) {
+            var commit = _ref2.commit,
+                dispatch = _ref2.dispatch;
 
             commit({ type: __WEBPACK_IMPORTED_MODULE_0__mutation_type__["a" /* REMOVE_AUTH_USER */] });
+            dispatch('removeTokens');
+        },
+        refreshAuthToken: function refreshAuthToken(_ref3) {
+            var commit = _ref3.commit,
+                dispatch = _ref3.dispatch;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/refresh').then(function (response) {
+                console.log('refresh: ', response);
+                dispatch('storeTokens', response.data).then(function (response) {
+                    dispatch('setAuthUser');
+                });
+            }).catch(function (error) {
+                console.log('refresh: ', error);
+                // delete access token
+                dispatch('removeAuthUser');
+            });
         }
     }
 });
@@ -56433,6 +56455,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_cookie__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_js_cookie__);
+
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     setToken: function setToken(token) {
         window.localStorage.setItem('jwt_token', token);
@@ -56442,6 +56468,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     removeToken: function removeToken() {
         window.localStorage.removeItem('jwt_token');
+    },
+    setAuthId: function setAuthId(authId) {
+        __WEBPACK_IMPORTED_MODULE_0_js_cookie___default.a.set('auth_id', authId);
+    },
+    getAuthId: function getAuthId() {
+        return __WEBPACK_IMPORTED_MODULE_0_js_cookie___default.a.get('auth_id');
+    },
+    removeAuthId: function removeAuthId() {
+        __WEBPACK_IMPORTED_MODULE_0_js_cookie___default.a.remove('auth_id');
     }
 });
 
@@ -56454,6 +56489,204 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return REMOVE_AUTH_USER; });
 var STORE_AUTH_USER = 'STORE_AUTH_USER';
 var REMOVE_AUTH_USER = 'REMOVE_AUTH_USER';
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!this.json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper_jwt__ = __webpack_require__(108);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    actions: {
+        storeTokens: function storeTokens(_ref, responseData) {
+            var commit = _ref.commit;
+
+            __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setAuthId(responseData.auth_id);
+            __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].setToken(responseData.token);
+        },
+        removeTokens: function removeTokens() {
+            __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].removeToken();
+            __WEBPACK_IMPORTED_MODULE_0__helper_jwt__["a" /* default */].removeAuthId();
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

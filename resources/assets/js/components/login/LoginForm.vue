@@ -35,7 +35,6 @@
 </template>
 
 <script>
-    import jwtToken from './../../helper/jwt';
     import axios from 'axios';
     import {ErrorBag} from 'vee-validate';
 
@@ -64,15 +63,15 @@
                             email: this.email, password: this.password,
                         };
 
-                        axios.post('/api/login', formData).then(response => {
-                            // locally store access token
-                            jwtToken.setToken(response.data.token);
-
-                            // store auth user by vuex
-                            this.$store.dispatch('SetAuthUser');
-
-                            // go to page
-                            this.$router.push({ name: 'profile' });
+                        return axios.post('/api/login', formData).then(response => {
+                            // locally store access token and auth_id
+                            this.$store.dispatch('storeTokens', response.data).then(response => {
+                                // store auth user by vuex
+                                this.$store.dispatch('setAuthUser').then(response => {
+                                    // go to page
+                                    this.$router.push({ name: 'home' });
+                                })
+                            });
                         }).catch(error => {
                             console.log(error);
                             // Credentials not matched

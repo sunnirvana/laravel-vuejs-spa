@@ -34,13 +34,13 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct (TokenProxy $proxy)
+    public function __construct(TokenProxy $proxy)
     {
         $this->middleware('guest')->except('logout');
         $this->proxy = $proxy;
     }
 
-    public function login ()
+    public function login()
     {
         $this->validateLogin(request());
 
@@ -48,8 +48,13 @@ class LoginController extends Controller
         return $this->proxy->login(request('email'), request('password'));
     }
 
-    public function logout ()
+    public function logout()
     {
         return $this->proxy->logout();
+    }
+
+    public function refresh()
+    {
+        return $this->proxy->refresh(request()->cookie('refresh_token'));
     }
 }

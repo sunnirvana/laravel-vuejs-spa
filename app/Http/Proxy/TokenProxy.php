@@ -11,6 +11,7 @@ namespace App\Http\Proxy;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Cookie;
 
 class TokenProxy
 {
@@ -28,7 +29,10 @@ class TokenProxy
             'grant_type'    => $grantType,
             'client_id'     => env('PASSPORT_CLIENT_ID'),
             'client_secret' => env('PASSPORT_CLIENT_SECRET'),
+            'scope'         => '',
         ], $data);
+
+        //        dd($params);
 
         // send post request
         try {
@@ -39,6 +43,7 @@ class TokenProxy
             return response()->json([
                 'status'     => true,
                 'token'      => $body['access_token'],
+                'auth_id'    => md5($body['access_token']),
                 'expires_in' => $body['expires_in'],
             ])->cookie('refresh_token', $body['refresh_token'], 60 * 24 * 10 /* 10 days in minutes */, '', '', false, true);
             // function setcookie ($name, $value = "", $expire = 0, $path = "", $domain = "", $secure = false, $httponly = false) {}
@@ -75,12 +80,21 @@ class TokenProxy
     public function logout()
     {
         $user = auth('api')->user();
+
+        if (is_null($user)) {
+            // remove refresh token from cookie
+//            app('cookie')->queue(app('cookie')->forget('refresh_token'));
+
+            return response()->json([
+                'status'  => false,
+                'message' => 'User does not exist !',
+            ], 204)->cookie('refresh_token', '', 0, '', '', false, true);
+        }
+
         $accessToken = $user->token();
 
         // revoke refresh_token
-        app('db')->table('oauth_refresh_tokens')
-            ->where('access_token_id', $accessToken->id)
-            ->update([
+        app('db')->table('oauth_refresh_tokens')->where('access_token_id', $accessToken->id)->update([
             'revoked' => true,
         ]);
 
@@ -88,11 +102,16 @@ class TokenProxy
         $accessToken->revoke();
 
         // remove refresh token from cookie
-        app('cookie')->forget('refresh_token');
+//        app('cookie')->queue(app('cookie')->forget('refresh_token'));
 
         return response()->json([
-            'status' => true,
-            'message' => 'logout!'
-        ], 204);
+            'status'  => true,
+            'message' => 'logout!',
+        ], 204)->cookie('refresh_token', '', 0, '', '', false, true);
+    }
+
+    public function refresh($refreshToken)
+    {
+        return $this->proxy('refresh_token', ['refresh_token' => $refreshToken]);
     }
 }

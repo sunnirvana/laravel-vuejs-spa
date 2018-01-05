@@ -14,7 +14,6 @@
 <script>
     import {mapState} from 'vuex';
     import axios from 'axios';
-    import jwtToken from '../../helper/jwt';
 
     export default {
         name: "top-menu",
@@ -26,11 +25,9 @@
         methods: {
             logout() {
                 axios.get('/api/logout').then(response => {
-                    // clean user info in Vuex
-                    this.$store.dispatch('RemoveAuthUser');
+                    // clean user info, auth_id and token
+                    this.$store.dispatch('removeAuthUser');
 
-                    // remove locally stored token
-                    jwtToken.removeToken();
                     this.$router.push({ name: 'login' });
                 })
             }

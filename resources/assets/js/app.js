@@ -21,6 +21,9 @@ import App from './components/App';
 import store from './store/index';
 import jwtToken from './helper/jwt';
 import axios from 'axios';
+import Element from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import local from 'element-ui/lib/locale/lang/en';
 
 // Localize takes the locale object as the second argument (optional) and merges it.
 import ar from './locale/en.js';
@@ -40,6 +43,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 Vue.use(VueRouter);
+Vue.use(Element, { local });
 Vue.component('app', App);
 
 const app = new Vue({

@@ -7,6 +7,7 @@
             <router-link v-if="user.authenticated" tag="li" to="/profile"><a>Profile</a></router-link>
             <li v-if="user.authenticated"><a href="#" @click.prevent="logout">Logout</a></li>
             <router-link tag="li" to="/about"><a>About</a></router-link>
+            <router-link tag="li" to="/eletable"><a>Element Test</a></router-link>
         </ul>
     </div>
 </template>

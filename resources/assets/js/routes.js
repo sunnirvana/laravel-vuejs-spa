@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router';
 import Store from './store/index';
+import jwtToken from './helper/jwt';
 
 // Components
 import Home from './components/pages/Home';
@@ -10,6 +11,8 @@ import Confirm from './components/common/Confirm';
 import Login from './components/login/Login';
 import Profile from './components/common/Profile';
 
+import MyTable from './components/element_ui/MyTable';
+
 const routes = [
     { path: '/', name: 'root', component: Home, meta: {} },
     { path: '/home', name: 'home', component: Home, meta: {} },
@@ -19,6 +22,8 @@ const routes = [
     { path: '/login', name: 'login', component: Login, meta: { requireGuest: true } },
     { path: '/register', name: 'register', component: Register, meta: { requireGuest: true } },
     { path: '/profile', name: 'profile', component: Profile, meta: { requireAuth: true } },
+
+    { path: '/eletable', name: 'my-table', component: MyTable, meta: { } },
 ];
 
 const router = new VueRouter({
@@ -28,13 +33,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
-        if (Store.state.AuthUser.authenticated) {
+        if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (Store.state.AuthUser.authenticated) {
+        if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
             next({ name: 'home' });
         } else {
             next();

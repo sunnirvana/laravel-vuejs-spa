@@ -25,3 +25,4 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/refresh', 'Auth\LoginController@refresh');
 
+Route::post('/user/profile/update', 'ProfileController@update')->middleware('auth:api');

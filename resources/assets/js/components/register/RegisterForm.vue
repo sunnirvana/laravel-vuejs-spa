@@ -65,7 +65,7 @@
             }
         },
         methods: {
-            register: function () {
+            register() {
                 this.$validator.validateAll().then(result => {
                     if (result) {
                         let formData = {

@@ -21,6 +21,20 @@
 <script>
     export default {
         name: "my-table",
+        mounted() {
+            this.$message({
+                message: 'my-table is mounted!',
+                type: 'success',
+                duration: 1500
+            });
+
+            this.$notify({
+                title: 'Success',
+                message: 'my-table is mounted!',
+                type: 'success',
+                duration: 2000
+            })
+        },
         data() {
             return {
                 tableData: [

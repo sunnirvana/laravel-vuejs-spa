@@ -45872,24 +45872,22 @@ exports.clearImmediate = clearImmediate;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_index__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helper_jwt__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Home__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_Home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_About__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_About__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_posts_Post__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_posts_Post__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_register_Register__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_register_Register__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_common_Confirm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_login_Login__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_login_Login__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_common_Profile__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_common_Profile__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_element_ui_MyTable__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_element_ui_MyTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_element_ui_MyTable__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Home__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_Home__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_About__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_About___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_About__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_posts_Post__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_posts_Post___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_posts_Post__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_register_Register__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_register_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_register_Register__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_common_Confirm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_login_Login__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_login_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_login_Login__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_common_Profile__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_common_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_common_Profile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_element_ui_MyTable__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_element_ui_MyTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_element_ui_MyTable__);
 
 
 
@@ -45904,7 +45902,7 @@ exports.clearImmediate = clearImmediate;
 
 
 
-var routes = [{ path: '/', name: 'root', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_Home___default.a, meta: {} }, { path: '/about', name: 'about', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_About___default.a, meta: {} }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_5__components_posts_Post___default.a, meta: {} }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_7__components_common_Confirm___default.a, meta: {} }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_8__components_login_Login___default.a, meta: { requireGuest: true } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_6__components_register_Register___default.a, meta: { requireGuest: true } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_9__components_common_Profile___default.a, meta: { requireAuth: true } }, { path: '/eletable', name: 'my-table', component: __WEBPACK_IMPORTED_MODULE_10__components_element_ui_MyTable___default.a, meta: {} }];
+var routes = [{ path: '/', name: 'root', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default.a, meta: {} }, { path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_Home___default.a, meta: {} }, { path: '/about', name: 'about', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_About___default.a, meta: {} }, { path: '/posts/:postId', name: 'post', component: __WEBPACK_IMPORTED_MODULE_4__components_posts_Post___default.a, meta: {} }, { path: '/confirm', name: 'confirm', component: __WEBPACK_IMPORTED_MODULE_6__components_common_Confirm___default.a, meta: {} }, { path: '/login', name: 'login', component: __WEBPACK_IMPORTED_MODULE_7__components_login_Login___default.a, meta: { requireGuest: true } }, { path: '/register', name: 'register', component: __WEBPACK_IMPORTED_MODULE_5__components_register_Register___default.a, meta: { requireGuest: true } }, { path: '/profile', name: 'profile', component: __WEBPACK_IMPORTED_MODULE_8__components_common_Profile___default.a, meta: { requireAuth: true } }, { path: '/eletable', name: 'my-table', component: __WEBPACK_IMPORTED_MODULE_9__components_element_ui_MyTable___default.a, meta: {} }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     mode: 'history',
@@ -45913,13 +45911,15 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
 
 router.beforeEach(function (to, from, next) {
     if (to.meta.requireAuth) {
-        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated || __WEBPACK_IMPORTED_MODULE_2__helper_jwt__["a" /* default */].getToken()) {
+        // if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated || __WEBPACK_IMPORTED_MODULE_2__helper_jwt__["a" /* default */].getToken()) {
+        // if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        if (__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */].state.AuthUser.authenticated) {
             next({ name: 'home' });
         } else {
             next();
@@ -47797,7 +47797,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-8142f38c], .fade-leave-active[data-v-8142f38c] {\n    -webkit-transition: opacity .3s;\n    transition: opacity .3s\n}\n.fade-enter[data-v-8142f38c], .fade-leave-to[data-v-8142f38c] {\n    opacity: 0\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-8142f38c], .fade-leave-active[data-v-8142f38c] {\n    -webkit-transition: opacity .6s;\n    transition: opacity .6s\n}\n.fade-enter[data-v-8142f38c], .fade-leave-to[data-v-8142f38c] {\n    opacity: 0\n}\n", ""]);
 
 // exports
 
@@ -47841,8 +47841,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
                 if (__WEBPACK_IMPORTED_MODULE_1__helper_jwt__["a" /* default */].getAuthId()) {
                     _this.$store.dispatch('refreshAuthToken');
-                } else {
-                    _this.$store.dispatch('removeToken');
                 }
             });
         }
@@ -100914,7 +100912,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -100948,6 +100946,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "my-table",
+    mounted: function mounted() {
+        this.$message({
+            message: 'my-table is mounted!',
+            type: 'success',
+            duration: 1500
+        });
+
+        this.$notify({
+            title: 'Success',
+            message: 'my-table is mounted!',
+            type: 'success',
+            duration: 2000
+        });
+    },
     data: function data() {
         return {
             tableData: [{

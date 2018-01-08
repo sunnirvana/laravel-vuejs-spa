@@ -26,8 +26,6 @@
                     console.log(error);
                     if (jwtToken.getAuthId()) {
                         this.$store.dispatch('refreshAuthToken')
-                    } else {
-                        this.$store.dispatch('removeToken')
                     }
                 })
             }
@@ -37,7 +35,7 @@
 
 <style scoped>
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s
+        transition: opacity .6s
     }
 
     .fade-enter, .fade-leave-to {

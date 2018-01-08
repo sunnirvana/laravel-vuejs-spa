@@ -1,6 +1,5 @@
 import VueRouter from 'vue-router';
 import Store from './store/index';
-import jwtToken from './helper/jwt';
 
 // Components
 import Home from './components/pages/Home';
@@ -33,13 +32,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
-        if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        // if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        if (Store.state.AuthUser.authenticated) {
             next();
         } else {
             next({ name: 'login' });
         }
     } else if (to.meta.requireGuest) {
-        if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        // if (Store.state.AuthUser.authenticated || jwtToken.getToken()) {
+        if (Store.state.AuthUser.authenticated) {
             next({ name: 'home' });
         } else {
             next();

@@ -19,9 +19,9 @@
     import {mapState} from 'vuex';
 
     export default {
-        name: '',
+        name: 'profile',
         create() {
-            this.$store.dispatch('setAuthUser');
+            // this.$store.dispatch('setAuthUser');
         },
         computed: {
             ...mapState({

@@ -33,39 +33,47 @@
 </template>
 
 <script>
-    import * as types from './../../store/mutation-type';
-
     export default {
         name: "edit-profile-form",
+        mounted() {
+            this.$store.dispatch('setAuthUser').then(response => {
+                this.name = this.$store.state.AuthUser.name;
+                this.email = this.$store.state.AuthUser.email;
+            });
+        },
         created() {
-
+            // this.name = this.$store.state.AuthUser.name;
+            // this.email = this.$store.state.AuthUser.email;
         },
         data() {
-            return {}
+            return {
+                name: '',
+                email: ''
+            }
         },
         computed: {
-            name: {
-                get() {
-                    return this.$store.state.AuthUser.name
-                },
-                set(value) {
-                    this.$store.commit({
-                        type: types.UPDATE_AUTH_NAME,
-                        user: value
-                    });
-                }
-            },
-            email: {
-                get() {
-                    return this.$store.state.AuthUser.email
-                },
-                set(value) {
-                    this.$store.commit({
-                        type: types.UPDATE_AUTH_EMAIL,
-                        email: value
-                    });
-                }
-            }
+            // name: {
+            //     get() {
+            //         return this.$store.state.AuthUser.name
+            //     },
+            //     set(value) {
+            //         this.$store.commit({
+            //             type: types.UPDATE_AUTH_NAME,
+            //             user: value
+            //         });
+            //     }
+            // },
+            // email: {
+            //     get() {
+            //         return this.$store.state.AuthUser.email
+            //     },
+            //     set(value) {
+            //         this.$store.commit({
+            //             type: types.UPDATE_AUTH_EMAIL,
+            //             email: value
+            //         });
+            //     }
+            // }
         },
         methods: {
             changeProfile() {
@@ -75,6 +83,7 @@
                             name: this.name,
                             email: this.email,
                         };
+                        // console.log(formData); return;
                         axios.post('/api/user/profile/update', formData).then(response => {
                             // back to Profile page
                             this.$message({
@@ -82,6 +91,7 @@
                                 type: 'success',
                                 duration: 1500
                             });
+                            this.$store.dispatch('setAuthUser');
                             this.$router.push({ name: 'profile' });
                         }).catch(error => {
                             // error handler

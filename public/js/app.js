@@ -101250,9 +101250,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: '',
+    name: 'profile',
     create: function create() {
-        this.$store.dispatch('setAuthUser');
+        // this.$store.dispatch('setAuthUser');
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
@@ -101729,7 +101729,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -101740,7 +101740,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_mutation_type__ = __webpack_require__(109);
 //
 //
 //
@@ -101775,62 +101774,76 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "edit-profile-form",
-    created: function created() {},
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$store.dispatch('setAuthUser').then(function (response) {
+            _this.name = _this.$store.state.AuthUser.name;
+            _this.email = _this.$store.state.AuthUser.email;
+        });
+    },
+    created: function created() {
+        // this.name = this.$store.state.AuthUser.name;
+        // this.email = this.$store.state.AuthUser.email;
+    },
     data: function data() {
-        return {};
+        return {
+            name: '',
+            email: ''
+        };
     },
 
     computed: {
-        name: {
-            get: function get() {
-                return this.$store.state.AuthUser.name;
-            },
-            set: function set(value) {
-                this.$store.commit({
-                    type: __WEBPACK_IMPORTED_MODULE_0__store_mutation_type__["d" /* UPDATE_AUTH_NAME */],
-                    user: value
-                });
-            }
-        },
-        email: {
-            get: function get() {
-                return this.$store.state.AuthUser.email;
-            },
-            set: function set(value) {
-                this.$store.commit({
-                    type: __WEBPACK_IMPORTED_MODULE_0__store_mutation_type__["c" /* UPDATE_AUTH_EMAIL */],
-                    email: value
-                });
-            }
-        }
+        // name: {
+        //     get() {
+        //         return this.$store.state.AuthUser.name
+        //     },
+        //     set(value) {
+        //         this.$store.commit({
+        //             type: types.UPDATE_AUTH_NAME,
+        //             user: value
+        //         });
+        //     }
+        // },
+        // email: {
+        //     get() {
+        //         return this.$store.state.AuthUser.email
+        //     },
+        //     set(value) {
+        //         this.$store.commit({
+        //             type: types.UPDATE_AUTH_EMAIL,
+        //             email: value
+        //         });
+        //     }
+        // }
     },
     methods: {
         changeProfile: function changeProfile() {
-            var _this = this;
+            var _this2 = this;
 
             this.$validator.validateAll().then(function (result) {
                 if (result) {
                     var formData = {
-                        name: _this.name,
-                        email: _this.email
+                        name: _this2.name,
+                        email: _this2.email
                     };
+                    // console.log(formData); return;
                     axios.post('/api/user/profile/update', formData).then(function (response) {
                         // back to Profile page
-                        _this.$message({
+                        _this2.$message({
                             message: 'User profile changed successfully!',
                             type: 'success',
                             duration: 1500
                         });
-                        _this.$router.push({ name: 'profile' });
+                        _this2.$store.dispatch('setAuthUser');
+                        _this2.$router.push({ name: 'profile' });
                     }).catch(function (error) {
                         // error handler
                         console.error(error);
-                        _this.$message({
+                        _this2.$message({
                             message: 'Failing to change User profile!',
                             type: 'error',
                             duration: 1500

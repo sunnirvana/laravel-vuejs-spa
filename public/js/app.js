@@ -101729,7 +101729,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -101740,6 +101740,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate__ = __webpack_require__(92);
 //
 //
 //
@@ -101774,6 +101775,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "edit-profile-form",
@@ -101792,10 +101797,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             name: '',
-            email: ''
+            email: '',
+            bag: new __WEBPACK_IMPORTED_MODULE_0_vee_validate__["a" /* ErrorBag */]()
         };
     },
 
+    watch: {
+        name: function name() {
+            this.clearErrorBag();
+        },
+        email: function email() {
+            this.clearErrorBag();
+        }
+    },
     computed: {
         // name: {
         //     get() {
@@ -101830,7 +101844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         name: _this2.name,
                         email: _this2.email
                     };
-                    // console.log(formData); return;
+                    // console.log(formData);
                     axios.post('/api/user/profile/update', formData).then(function (response) {
                         // back to Profile page
                         _this2.$message({
@@ -101842,15 +101856,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this2.$router.push({ name: 'profile' });
                     }).catch(function (error) {
                         // error handler
-                        console.error(error);
-                        _this2.$message({
-                            message: 'Failing to change User profile!',
-                            type: 'error',
-                            duration: 1500
-                        });
+                        console.error(error, error.response);
+                        if (error.response.status === 422 && error.response.data.errors) {
+                            var parsedErrors = _this2.parseErrorBag(error.response.data.errors);
+                            console.log(parsedErrors);
+                            for (var i in parsedErrors) {
+                                _this2.bag.add(parsedErrors[i].type, parsedErrors[i].message);
+                            }
+                        } else {
+                            _this2.$message({
+                                message: 'Failing to change User profile!',
+                                type: 'error',
+                                duration: 1500
+                            });
+                        }
                     });
                 }
             });
+        },
+        parseErrorBag: function parseErrorBag(errorData) {
+            var error = [];
+            for (var i in errorData) {
+                error.push({
+                    type: i,
+                    message: errorData[i][0]
+                });
+            }
+            return error;
+        },
+        clearErrorBag: function clearErrorBag() {
+            if (this.bag.count()) {
+                this.bag.clear();
+            }
         }
     }
 });
@@ -101879,7 +101916,7 @@ var render = function() {
         "div",
         {
           staticClass: "form-group",
-          class: { "has-error": _vm.errors.has("name") }
+          class: { "has-error": _vm.errors.has("name") || _vm.bag.has("name") }
         },
         [
           _c(
@@ -101933,6 +101970,22 @@ var render = function() {
                 staticClass: "help-block"
               },
               [_vm._v(_vm._s(_vm.errors.first("name")))]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.bag.has("name"),
+                    expression: "bag.has('name')"
+                  }
+                ],
+                staticClass: "help-block"
+              },
+              [_vm._v(_vm._s(_vm.bag.first("name")))]
             )
           ])
         ]
@@ -101942,7 +101995,9 @@ var render = function() {
         "div",
         {
           staticClass: "form-group",
-          class: { "has-error": _vm.errors.has("email") }
+          class: {
+            "has-error": _vm.errors.has("email") || _vm.bag.has("email")
+          }
         },
         [
           _c(
@@ -101996,6 +102051,22 @@ var render = function() {
                 staticClass: "help-block"
               },
               [_vm._v(_vm._s(_vm.errors.first("email")))]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.bag.has("email"),
+                    expression: "bag.has('email')"
+                  }
+                ],
+                staticClass: "help-block"
+              },
+              [_vm._v(_vm._s(_vm.bag.first("email")))]
             )
           ])
         ]
